@@ -1,0 +1,23 @@
+.navText{
+    color: black;
+  }
+
+  .navbar-brand{
+    padding-left: 10px;
+  }
+
+.navText2 {
+    padding-right: 20px;
+}
+
+.nav-search{
+  padding-top: 6px;
+  padding-right: 25px;
+  border-color: white;
+}
+.searchBarText{
+  padding-right: 40px;
+}
+.searchBarIcon{
+  padding-right: 10px;
+}
