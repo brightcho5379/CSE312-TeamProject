@@ -1,5 +1,6 @@
 import React, { Component, } from "react";
 import './title.css';
+
 export default class Categories extends Component {
   render() {
     return(
@@ -55,40 +56,6 @@ The mouth of the dust pan adopts the integrated TPR flat rubber lip, and it conf
       </>
 
     );
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 }

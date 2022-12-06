@@ -4,7 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
+import Auctions from "./components/Auctions/Auctions";
 import Categories from "./components/Categories/Categories";
+import Post from "./components/Post/Post";
 
 export default class App extends Component {
     render() {
@@ -16,7 +18,9 @@ export default class App extends Component {
                         <Route path = "/" element = {<Home/>} />
                         <Route path = "/Home" element = {<Home/>} />
                         <Route path = "/Login" element = {<Login/>} />
-                        <Route path = "/Categories" element = {<Categories/>}/>
+                        <Route path = "/Auctions" element = {<Auctions/>} />
+                        <Route path = "/Categories" element = {<Categories/>} />
+                        <Route path = "/Post" element = {<Post/>} />
                     </Routes>
                 </div>
             </BrowserRouter>

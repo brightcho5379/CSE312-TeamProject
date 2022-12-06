@@ -1,12 +1,20 @@
 .HighBox{
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
-.HighlightBox{
-    background-color: lightgrey;
+.out{
+  display: flex;
+  padding-left: 460px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bgBox{
+    background-color: black;
     width: 98%;
     height: 350px;
-    padding: 50px;
+    padding: 20px;
     margin: 20px;
   }
 
@@ -84,12 +92,13 @@
     padding: 50px;
     margin: 20px;
   }
-  .centerBooksBox {
-    margin-top: -339px;
-    display: flex;
-    justify-content: right;
-    align-items: right;
-  }
+
+.centerBooksBox {
+  margin-top: -339px;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
 
 .posts {
     padding-top: 50px;
@@ -101,6 +110,48 @@
     text-align: center;
 }
 
+.Post1{
+  margin-top: 4%;
+  margin-left: 40px;
+}
+.Post1Box{
+  background-color: lightgrey;
+  width: 300px;
+  height: 400px;
+  padding: 50px;
+  margin: 20px;
+}
+
+.Post2 {
+  margin-top: -475px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Post2Box{
+  background-color: lightgrey;
+  width: 300px;
+  height: 400px;
+  padding: 50px;
+  margin: 20px;
+}
+
+.Post3 {
+  margin-top: -405px;
+  margin-right: 40px;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+.Post3Box{
+  background-color: lightgrey;
+  width: 300px;
+  height: 400px;
+  padding: 50px;
+  margin: 20px;
+}
+
+
 .auctions {
     padding-top: 50px;
     font-size: 30px;
@@ -109,6 +160,48 @@
 
 .auctionsDescription{
     text-align: center;
+}
+
+
+.Auction1{
+  margin-top: 4%;
+  margin-left: 40px;
+}
+.Auction1Box{
+  background-color: lightgrey;
+  width: 300px;
+  height: 400px;
+  padding: 50px;
+  margin: 20px;
+}
+
+.Auction2 {
+  margin-top: -475px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Auction2Box{
+  background-color: lightgrey;
+  width: 300px;
+  height: 400px;
+  padding: 50px;
+  margin: 20px;
+}
+
+.Auction3 {
+  margin-right: 40px;
+  margin-top: -405px;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+.Auction3Box{
+  background-color: lightgrey;
+  width: 300px;
+  height: 400px;
+  padding: 50px;
+  margin: 20px;
 }
 
 
