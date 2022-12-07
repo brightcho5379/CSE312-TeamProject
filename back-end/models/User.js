@@ -9,11 +9,32 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    email:{
+        type:String,
+        required:true
+    },
     university:{
         type:String,
         required:true
+    },
+    cookie:{
+        type:String,
+        require:true
+    },
+    cart: {
+        type: Array,
+        default: []
+    },
+    prevPostings: { 
+        type: Array,
+        default: []
+    },
+    prevPurchases:{
+        type: Array,
+        default: []
     }
+    },{
+    timestamps: true
 })
 
 module.exports = mongoose.model('User',userSchema)
-
