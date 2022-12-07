@@ -59,11 +59,11 @@ const Home = () => {
       
       <div class = "HighBox">
         <div bgBox></div>
-          <div className = "HighlightBox" style = {{margin: "auto", textAlign: "center"}}>
+          <div className = "HighlightBox">
           {suggestions.length === 0 ? (
-        <div className="spinner-border" role="status">
+          <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
-        </div>
+          </div>
       ) : (
         <Slider {...settings}>
           <div className="out">

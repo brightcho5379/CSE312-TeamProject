@@ -1,7 +1,9 @@
 .HighBox{
   padding-top: 10px;
 }
-
+.HighlightBox{
+  margin-left: 28%;
+}
 .out{
   max-width: 100%;
   margin:  auto;
@@ -12,9 +14,6 @@
   text-align: center;
 }
 
-.img{
-  width: 3000px;
-}
 
 .bgBox{
     background-color: black;
