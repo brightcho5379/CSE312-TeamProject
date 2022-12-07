@@ -12,6 +12,9 @@ const Post = () => {
         <div className = "itemElements">
         <label>Item:</label>
         <input id = "item" type = 'text'></input>
+
+        <br/><br/>
+
         <label id = "priceBox">Price: </label>
         <input id = "price"></input>
         
@@ -29,7 +32,8 @@ const Post = () => {
           <div className = "HomeGoods">
           </div>
         </div>
-        <button id = 'postingButton'>Post</button>
+
+        <button className = 'postingButton'>Post</button>
         
       </>
     );

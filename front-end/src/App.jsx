@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import Auctions from "./components/Auctions/Auctions";
 import Categories from "./components/Categories/Categories";
 import Post from "./components/Post/Post";
+import Register from "./components/Login/Register";
 
 export default class App extends Component {
     render() {
@@ -21,6 +22,7 @@ export default class App extends Component {
                         <Route path = "/Auctions" element = {<Auctions/>} />
                         <Route path = "/Categories" element = {<Categories/>} />
                         <Route path = "/Post" element = {<Post/>} />
+                        <Route path = "/Register" element = {<Register/>} />
                     </Routes>
                 </div>
             </BrowserRouter>
