@@ -3,11 +3,17 @@
 }
 
 .out{
+  max-width: 100%;
+  margin:  auto;
   display: flex;
-  padding-left: 460px;
+  margin-left: 460px auto;
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.img{
+  width: 3000px;
 }
 
 .bgBox{

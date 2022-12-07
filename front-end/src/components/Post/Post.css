@@ -1,0 +1,19 @@
+.Post-page{
+    max-width: 500px;
+    border: 2px solid #0f0f0f;
+    border-radius: 5px;
+    padding: 30px;
+    margin: 50px auto;
+}
+
+.Post-page input{
+    width: 65%;
+    margin: 2px 0;
+}
+
+.Post-page form button{
+    margin: 10px 0;
+    width: 85%;
+    border: 1px solid #0000;
+
+}

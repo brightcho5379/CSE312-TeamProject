@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-function Register() {
+const Register = () => {
     const [user, setUser] = useState({
         name:'', email:'', password: ''
     })
@@ -40,6 +40,9 @@ function Register() {
                 <input type="password" name="password" required autoComplete="on"
                 placeholder="Password" value={user.password} onChange={onChangeInput} />
 
+                <input type="confirm_password" name="confirm_password" required autoComplete="on"
+                placeholder="Re-enter Password" value={user.password} onChange={onChangeInput} />
+
                 <div className="row">
                     <button type="submit">Register</button>
                     <Link to="/login">Login</Link>
@@ -49,4 +52,4 @@ function Register() {
     )
 }
 
-export default Register
+export default Register;

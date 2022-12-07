@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
+import './Login.css'
 import axios from 'axios'
 
-function Login() {
+const Login = () => {
     const [user, setUser] = useState({
         email:'', password: ''
     })
@@ -16,9 +17,6 @@ function Login() {
         e.preventDefault()
         try {
             await axios.post('/user/login', {...user})
-
-            localStorage.setItem('firstLogin', true)
-            
             window.location.href = "/";
         } catch (err) {
             alert(err.response.data.msg)
@@ -31,17 +29,17 @@ function Login() {
                 <h2>Login</h2>
                 <input type="email" name="email" required
                 placeholder="Email" value={user.email} onChange={onChangeInput} />
-
+                <br/>
                 <input type="password" name="password" required autoComplete="on"
                 placeholder="Password" value={user.password} onChange={onChangeInput} />
 
-                <div className="row">
+                <div className="Login-Button">
                     <button type="submit">Login</button>
-                    <Link to="/register">Register</Link>
+                    <label>Don't have an account? <Link to="/register">Register</Link></label>
                 </div>
             </form>
         </div>
     )
 }
 
-export default Login
+export default Login;

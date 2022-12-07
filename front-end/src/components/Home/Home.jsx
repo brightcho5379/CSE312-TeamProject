@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import "./index.css";
+import "./Home.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,7 @@ import bags from './images/bags.jpg';
 import computers from './images/computers.jpg';
 import tshirts from './images/tshirts.jpg';
 import Slider from "react-slick";
+
 
 
 const Home = () => {
@@ -58,16 +59,16 @@ const Home = () => {
       
       <div class = "HighBox">
         <div bgBox></div>
-          <div className = "HighlightBox">
+          <div className = "HighlightBox" style = {{margin: "auto", textAlign: "center"}}>
           {suggestions.length === 0 ? (
         <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
         <Slider {...settings}>
-
           <div className="out">
                 <img
+                  id = 'shopItems'
                   className="rectangle"
                   alt={"Shopping Items"}
                   src={bags}
