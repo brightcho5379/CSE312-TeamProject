@@ -7,22 +7,21 @@ const crypto = require("crypto");
         register: async (req, res) =>{
             try {
                 const {username, password, email, university} = req.body;
-    
                 const user_email = await Users.findOne({email})
                 if(user_email) return res.status(400).json({msg: "The email already exists."})
                 const user_username = await Users.findOne({username})
-                if(user_email) return res.status(400).json({msg: "This username already exists."})
-                if(password.length < 6) 
-                    return res.status(400).json({msg: "Password is at least 6 characters long."})
+                if(user_username) return res.status(400).json({msg: "This username already exists."})
+                if(password.length < 6) return res.status(400).json({msg: "Password is at least 6 characters long."})
                 
                 const passwordHash = await bcrypt.hash(password, 10)
                 const cookie_value = crypto.randomBytes(20).toString('hex');
-                const cookie = res.cookie('auth',cookie_value,{maxAge:"7*24*60*60*1000",httpOnly: true})
+                const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+                res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
                 const newUser = new Users({
-                    username, email, password: passwordHash, university, cookie
+                    username, email, password: passwordHash, university, cookie:cookie_value
                 })
                 await newUser.save()
-                res.redirect('/categories')
+                res.json({msg:"COMPLETE"})
                 
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -37,15 +36,14 @@ const crypto = require("crypto");
                 if(!user) return res.status(400).json({msg: "Username does not exist."})
                 const isMatch = await bcrypt.compare(password, user.password)
                 if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
-                
-                const filter = { name: user['username'] };
-                const update = { cookie: "" };
-                await User.findOneAndUpdate(filter, update, function(err, doc) {
-                    if (err) return res.send(500, {error: err});
-                    return res.send('Succesfully saved.');
-                });
-                await user.save()
-                res.redirect('/categories')
+                const cookie_value = crypto.randomBytes(20).toString('hex');
+                const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+                res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
+                const filter = {name: "johnsmith"};
+                const update = {cookie: "new_cookie_value"};
+                const updatedUser = await Users.findOneAndUpdate(filter, update);
+                await updatedUser.save()
+                res.json({msg:"COMPLETE"})
                 
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -55,10 +53,10 @@ const crypto = require("crypto");
         logout: async (req, res) => {
             try {
                 const current_cookie = req.cookie;
-                const user = await User.findOne({current_cookie})
+                const user = await Users.findOne({current_cookie})
                 const filter = { name: user['username'] };
                 const update = { cookie: "" };
-                User.findOneAndUpdate(filter, update, function(err, doc) {
+                Users.findOneAndUpdate(filter, update, function(err, doc) {
                     if (err) return res.send(500, {error: err});
                     return res.send('Succesfully saved.');
                 });
