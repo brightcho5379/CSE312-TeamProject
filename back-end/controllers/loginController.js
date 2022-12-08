@@ -39,8 +39,8 @@ const crypto = require("crypto");
                 const cookie_value = crypto.randomBytes(20).toString('hex');
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
-                const filter = {name: "johnsmith"};
-                const update = {cookie: "new_cookie_value"};
+                const filter = {"username": username};
+                const update = {"cookie": cookie_value};
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save()
                 res.json({msg:"COMPLETE"})
@@ -54,14 +54,14 @@ const crypto = require("crypto");
             try {
                 const current_cookie = req.cookie;
                 const user = await Users.findOne({current_cookie})
-                const filter = { name: user['username'] };
+                const filter = { username: user['username'] };
                 const update = { cookie: "" };
                 Users.findOneAndUpdate(filter, update, function(err, doc) {
                     if (err) return res.send(500, {error: err});
                     return res.send('Succesfully saved.');
                 });
-                res.redirect('/categories')
-                res.clearCookie('refreshtoken', {path: '/user/refresh_token'})
+                res.clearCookie('auth', {httpOnly: true});
+                res.redirect('/')
                 return res.json({msg: "Logged out"})
             } catch (err) {
                 return res.status(500).json({msg: err.message})

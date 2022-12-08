@@ -13,15 +13,26 @@ const User = require('../models/User')
         createProducts: async(req, res) =>{
             try {
                 const {item, price, description, images} = req.body;
-                if(!images) return res.status(400).json({msg: "No image upload"})
-                const product = await Products.findOne({product_id})
-                if(product)
-                    return res.status(400).json({msg: "This product already exists."})
-                const newProduct = new Products({
-                    item: title.toLowerCase(), price, description, content, images, category
-                })
+                if (!item || !price || !description || !images) {
+                    return res.status(400).json({msg: "Missing required fields"})
+                }
                 await newProduct.save()
                 res.json({msg: "Created a product"})
+            } catch (err) {
+                return res.status(500).json({msg: err.message})
+            }
+        },
+        viewCart: async(req, res) =>{
+            try {
+                const current_cookie = req.cookie;
+                const user = await User.findOne({current_cookie})
+                if(!user){
+                    res.redirect("/login")
+                }
+                else{
+                    const user_cart = await user["cart"]
+                    return res.json(user_cart)
+                }
             } catch (err) {
                 return res.status(500).json({msg: err.message})
             }
