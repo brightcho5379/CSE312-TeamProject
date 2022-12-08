@@ -1,4 +1,5 @@
 const Users = require('../models/User')
+const Product = require('../models/Product')
 const bcrypt = require('bcrypt')
 const crypto = require("crypto");
 
@@ -33,7 +34,10 @@ const crypto = require("crypto");
             try {
                 const {username, password} = req.body;
                 const user = await Users.findOne({username})
-                if(!user) return res.status(400).json({msg: "Username does not exist."})
+                if(!user){
+                    res.redirect('/register')
+                    return res.status(400).json({msg: "Username does not exist."})
+                } 
                 const isMatch = await bcrypt.compare(password, user.password)
                 if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
                 const cookie_value = crypto.randomBytes(20).toString('hex');
@@ -54,6 +58,7 @@ const crypto = require("crypto");
             try {
                 const current_cookie = req.cookie;
                 if(!current_cookie){
+                    res.redirect('/login')
                     return res.json({msg:"You are not Logged In"})
                 }
                 const user = await Users.findOne({current_cookie})
@@ -61,12 +66,30 @@ const crypto = require("crypto");
                 const update = { cookie: "" };
                 Users.findOneAndUpdate(filter, update, function(err, doc) {
                     if (err) return res.send(500, {error: err});
-                    return res.send('Succesfully saved.');
                 });
                 res.clearCookie('auth', {httpOnly: true});
                 res.redirect('/')
                 return res.json({msg: "Logged out"})
             } catch (err) {
+                return res.status(500).json({msg: err.message})
+            }
+        },
+        addTocart: async (req, res) => {
+            try{
+                const current_cookie = req.cookie;
+                const cart_item = req.body;
+                if(!current_cookie){
+                    return res.json({msg:"Must Login to add to your shopping cart"})
+                }
+                const user = await Users.findOne({current_cookie})
+                const filter = { username: user['username'] };
+                const update = { cart: [] };
+                Users.findOneAndUpdate(filter, update, function(err, doc) {
+                    if (err) return res.send(500, {error: err});
+                });
+                res.redirect('/')
+            }
+            catch(err){
                 return res.status(500).json({msg: err.message})
             }
         }

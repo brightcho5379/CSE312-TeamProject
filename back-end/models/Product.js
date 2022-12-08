@@ -21,7 +21,12 @@ const productSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
-}, {
+    product_id:{
+        type: String,
+        unique: true,
+        required: true
+    }}, 
+    {
     timestamps: true //important
 })
 
