@@ -53,6 +53,9 @@ const crypto = require("crypto");
         logout: async (req, res) => {
             try {
                 const current_cookie = req.cookie;
+                if(!current_cookie){
+                    return res.json({msg:"You are not Logged In"})
+                }
                 const user = await Users.findOne({current_cookie})
                 const filter = { username: user['username'] };
                 const update = { cookie: "" };
