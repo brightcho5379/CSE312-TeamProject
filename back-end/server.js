@@ -5,7 +5,7 @@ const app = express();
 
 //Routes
 app.use('/user',require('./routes/login.js'))
-app.use('/',require('./routes/login.js'))
+app.use('/',require('./routes/product.js'))
 
 const URI = process.env.DATABASE_URI
 mongoose.connect(URI, () =>

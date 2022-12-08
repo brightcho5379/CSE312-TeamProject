@@ -1,8 +1,6 @@
 const Users = require('../models/User')
 const bcrypt = require('bcrypt')
 const crypto = require("crypto");
-const User = require('../models/User');
-
 
     const loginController = {
         //Register Request
