@@ -20,7 +20,7 @@ app.use(fileUpload({
 
 //Routes
 app.use('/user',require('./routes/login.js'))
-// app.use('/',require('./routes/product.js'))
+app.use('/',require('./routes/product.js'))
 // app.use('/auction',require('./routes/auction.js'))
 
 const URI = process.env.DATABASE_URI

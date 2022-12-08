@@ -5,7 +5,6 @@ const User = require('../models/User')
         getProducts: async(req, res) => {
             try{
                 const displayProducts = await Product.find({}).limit(10)
-
                 res.json(displayProducts)
             }catch(err){
                 return res.status(500).json({msg: err.message})

@@ -8,6 +8,8 @@ import Auctions from "./components/Auctions/Auctions";
 import Categories from "./components/Categories/Categories";
 import Post from "./components/Post/Post";
 import Register from "./components/Login/Register";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import Profile from "./components/Profile/profile";
 
 export default class App extends Component {
     render() {
@@ -23,6 +25,8 @@ export default class App extends Component {
                         <Route path = "/Categories" element = {<Categories/>} />
                         <Route path = "/Post" element = {<Post/>} />
                         <Route path = "/Register" element = {<Register/>} />
+                        <Route path = "/ShoppingCart" element = {<ShoppingCart/>} />
+                        <Route path = "/Profile" element = {<Profile/>} />
                     </Routes>
                 </div>
             </BrowserRouter>
