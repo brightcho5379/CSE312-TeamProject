@@ -19,29 +19,29 @@ export default class Categories extends Component {
                <button className="btn">Books</button>
             </div>
             <div className="col">
-  <div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Card image cap"></img>
-    <div class="card-body">
-      <h5 class="card-title">Home Goods1</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+  <div className="card-group">
+  <div className="card">
+    <img className="card-img-top" src=".../100px180/" alt="Card image cap"></img>
+    <div className="card-body">
+      <h5 className="card-title">Home Goods1</h5>
+      <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       <span className="price">$0.0</span>
     </div>
   </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Card image cap"></img>
-    <div class="card-body">
-      <h5 class="card-title">Home Goods2</h5>
-      <p class="card-text">Rubber Lip Design
+  <div className="card">
+    <img className="card-img-top" src=".../100px180/" alt="Card image cap"></img>
+    <div className="card-body">
+      <h5 className="card-title">Home Goods2</h5>
+      <p className="card-text">Rubber Lip Design
 The mouth of the dust pan adopts the integrated TPR flat rubber lip, and it conforms to clean all garbage and debris into dustpan, not swept underneath it.</p>
       <span className="price">$0.0</span>
     </div>
   </div>
-  <div class="card">
-    <img class="card-img-top" src=".../100px180/" alt="Card image cap"></img>
-    <div class="card-body">
-      <h5 class="card-title">Home Goods3</h5>
-      <p class="card-text">Oil Diffuser with Flame Light Air Aroma Humidifier for Home Large & Small Room,Office or Yoga</p>
+  <div className="card">
+    <img className="card-img-top" src=".../100px180/" alt="Card image cap"></img>
+    <div className="card-body">
+      <h5 className="card-title">Home Goods3</h5>
+      <p className="card-text">Oil Diffuser with Flame Light Air Aroma Humidifier for Home Large & Small Room,Office or Yoga</p>
 
       <span className="price">$0.0</span>
     </div>

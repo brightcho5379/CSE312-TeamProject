@@ -57,8 +57,8 @@ const Home = () => {
     <>
       {/* Menu Highlights */}
       
-      <div class = "HighBox">
-        <div bgBox></div>
+      <div className = "HighBox">
+        {/*<div className = "bgBox"></div>*/}
           <div className = "HighlightBox">
           {suggestions.length === 0 ? (
           <div className="spinner-border" role="status">
@@ -106,7 +106,7 @@ const Home = () => {
       <div className = "categoriesDescription">
         Here are some popular categories that students are currently selling!
       </div>
-      <div class = "centerButton">
+      <div className = "centerButton">
       <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
       </div>
       {/* ------------------------------- */}
@@ -119,7 +119,7 @@ const Home = () => {
           <b>Home Goods</b>
         </div>
 
-        <div class = "centerTechBox">
+        <div className = "centerTechBox">
           <div className = "TechnologyBox"></div>
         </div>
 
@@ -128,7 +128,7 @@ const Home = () => {
         </div>
 
 
-        <div class = "centerBooksBox">
+        <div className = "centerBooksBox">
           <div className = "BooksBox"></div>
         </div>
         <div className = "Books">
@@ -147,7 +147,7 @@ const Home = () => {
       <div className = "postsDescription">
         Here are the recent posts that students are currently selling!
       </div>
-      <div class = "centerButton">
+      <div className = "centerButton">
       <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
       </div>
 
@@ -174,7 +174,7 @@ const Home = () => {
       <div className = "auctionsDescription">
         Here are the recent posts that students are currently selling!
       </div>
-      <div class = "centerButton">
+      <div className = "centerButton">
       <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
       </div>
 
