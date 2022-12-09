@@ -34,7 +34,7 @@ const crypto = require("crypto");
                 const { username, password } = req.body;
                 const user = await Users.findOne({ username });
                 if (!user) {
-                    return res.status(400).json({ msg: "Username does not exist." });
+                    return res.redirect('localhost:3000/register').json({ msg: "Username does not exist." });
                 }
                 const isMatch = await bcrypt.compare(password, user.password);
                 if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });
@@ -46,7 +46,7 @@ const crypto = require("crypto");
                 await updatedUser.save();
                 return res.cookie("auth", cookie_value, { expires: expirationDate, httpOnly: true }).redirect("/");
                 } catch (err) {
-                return res.status(500).json({ msg: err.message });
+                return res.status(500).json({msg: err.message});
             }
         },
             
