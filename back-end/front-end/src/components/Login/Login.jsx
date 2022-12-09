@@ -21,32 +21,13 @@ function Login() {
         e.preventDefault()
         try {
             await axiosInstance.post('http://localhost:8080/user/login', {...user})
-
             //localStorage.setItem('firstLogin', true)
-            
             window.location.href = "/";
         } catch (err) {
             alert(err.response.data.msg)
         }
     }
-    // const [user, setUser] = useState({
-    //     email:'', password: ''
-    // })
 
-    // const onChangeInput = e =>{
-    //     const {name, value} = e.target;
-    //     setUser({...user, [name]:value})
-    // }
-
-    // const loginSubmit = async e =>{
-    //     e.preventDefault()
-    //     try {
-    //         await axios.post('/user/login', {...user})
-    //         window.location.href = "/";
-    //     } catch (err) {
-    //         alert(err.response.data.msg)
-    //     }
-    // }
 
     return (
         <div className="login-page">

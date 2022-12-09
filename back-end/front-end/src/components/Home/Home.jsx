@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import "./Home.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "slick-carousel/slick/slick.css";
@@ -8,10 +7,26 @@ import bags from './images/bags.jpg';
 import computers from './images/computers.jpg';
 import tshirts from './images/tshirts.jpg';
 import Slider from "react-slick";
+import axios from 'axios';
+
 
 
 
 const Home = () => {
+  /* Fetching items from items back-end*/
+  const[products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch the data from the back-end
+    axios.get('http://localhost:8080/api/products')
+      .then(res => {
+        setProducts(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
   /* Slide Show functionality */
 
   let settings = {
@@ -48,8 +63,7 @@ const Home = () => {
 
   return (
     <>
-      {/* Menu Highlights */}
-      
+      {/* Menu Highlights */} 
       <div className = "HighBox">
         {/*<div className = "bgBox"></div>*/}
           <div className = "HighlightBox">
@@ -83,113 +97,22 @@ const Home = () => {
                 />
             </div>
         </Slider>
-      
+
           </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-      {/* Categories and it's description 
-      <div className = "categories">
-        Categories
-      </div>
-      <div className = "categoriesDescription">
-        Here are some popular categories that students are currently selling!
-      </div>
-      <div className = "centerButton">
-      <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
-      </div>
-      {/* ------------------------------- 
-
-
-      <div className = "categoryTypes">
-
-        <div className = "HomeGoodsBox"></div>
-        <div className = "HomeGoods">
-          <b>Home Goods</b>
-        </div>
-
-        <div className = "centerTechBox">
-          <div className = "TechnologyBox"></div>
-        </div>
-
-        <div className = "Technology">
-          <b>Technology</b>
-        </div>
-
-
-        <div className = "centerBooksBox">
-          <div className = "BooksBox"></div>
-        </div>
-        <div className = "Books">
-          <b>Books</b>
-        </div>
-
-      </div>
-
-
-      <div className = "containerPosts"></div>
-      <div className = "posts">
-      Posts
-      </div>
-      <div className = "postsDescription">
-        Here are the recent posts that students are currently selling!
-      </div>
-      <div className = "centerButton">
-      <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
-      </div>
-
-      <div className = "PostBoxes">
-          <div className = "Post1">
-            <div className = "Post1Box"></div>
-          </div>
-
-          <div className = "Post2">
-            <div className = "Post2Box"></div>
-          </div>
-
-          <div className = "Post3">
-            <div className = "Post3Box"></div>
-          </div>
-      </div>
-
-
-
-       Auctions and it's description 
-      <div className = "auctions">
-      Auctions
-      </div>
-      <div className = "auctionsDescription">
-        Here are the recent posts that students are currently selling!
-      </div>
-      <div className = "centerButton">
-      <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
-      </div>
-
-      <div className = "AuctionBoxes">
-          <div className = "Auction1">
-            <div className = "Auction1Box"></div>
-          </div>
-
-          <div className = "Auction2">
-            <div className = "Auction2Box"></div>
-          </div>
-
-          <div className = "Auction3">
-            <div className = "Auction3Box"></div>
-          </div>
-      </div>
-      ------------------------------- */}
-    
+      <h2>Recent Posts:</h2>
+        {products.slice(0, 10).map(product => (
+                <div>
+                  <p>Product: {product.item}</p>
+                  <p>Price: {product.price}</p>
+                  <p>Description: {product.description}</p>
+                  <p>Seller: {product.username}</p>
+                  <img src={product.images} alt={product.name}/>
+                </div>
+        ))}
     </>
   );
+
 }
+
 export default Home;

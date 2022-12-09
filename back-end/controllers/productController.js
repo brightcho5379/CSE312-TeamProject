@@ -50,7 +50,7 @@ const uuid = require('uuid')
                 const current_cookie = req.cookie;
                 const user = await User.findOne({current_cookie})
                 if(!user){
-                    res.redirect("/login")
+                    res.redirect("/Login")
                 }
                 else{
                     const user_cart = await user["cart"]

@@ -30,7 +30,6 @@ const crypto = require("crypto");
         },
 
         //Login Request 
-        //Login Request 
         login: async (req, res) => {
             try {
                 const { username, password } = req.body;
@@ -44,11 +43,12 @@ const crypto = require("crypto");
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 const filter = { username: username };
                 const update = { cookie: cookie_value };
-
+               
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
+            
                 res.cookie('auth', cookie_value, {httpOnly: false, expires: expirationDate})
-                res.redirect('/')    
+                res.json({msg: "You are now logged in"})
                 } catch (err) {
                 return res.status(500).json({msg: err.message});
             }
