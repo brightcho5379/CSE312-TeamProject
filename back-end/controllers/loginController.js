@@ -44,6 +44,7 @@ const crypto = require("crypto");
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 const filter = { username: username };
                 const update = { cookie: cookie_value };
+
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
                 res.cookie('auth', cookie_value, {httpOnly: true, expires: expirationDate,domain:"localhost:3000",path:"/"})
