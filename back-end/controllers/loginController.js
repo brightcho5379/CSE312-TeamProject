@@ -17,11 +17,12 @@ const crypto = require("crypto");
                 const cookie_value = crypto.randomBytes(20).toString('hex');
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
+                
                 const newUser = new Users({
                     username, email, password: passwordHash, university, cookie:cookie_value
                 })
                 await newUser.save()
-                return res.redirect('/')
+                res.json({msg : "Account Successfully Created"})
                 
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -34,7 +35,7 @@ const crypto = require("crypto");
                 const { username, password } = req.body;
                 const user = await Users.findOne({ username });
                 if (!user) {
-                    return res.redirect('localhost:3000/register').json({ msg: "Username does not exist." });
+                    return res.status(400).json({msg: "User does not exist."});
                 }
                 const isMatch = await bcrypt.compare(password, user.password);
                 if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });
