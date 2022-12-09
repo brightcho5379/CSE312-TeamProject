@@ -17,12 +17,21 @@ const { findOne } = require('../models/User')
             try {
                 const {item, price, description, images} = req.body;
                 const current_cookie = req.cookie;
-                if (!item || !price || !description || !images) {
-                    return res.status(400).json({msg: "Missing required fields"})
+                if (!images) {
+                    return res.status(400).json({msg: "Missing image field"})
+                }
+                if (!description) {
+                    return res.status(400).json({msg: "Missing description field"})
+                }
+                if (!price) {
+                    return res.status(400).json({msg: "Missing price field"})
+                }
+                if (!item) {
+                    return res.status(400).json({msg: "Missing item field"})
                 }
                 const user = await User.findOne({current_cookie})
                 if(!user){
-                    res.redirect("/login")
+                    res.redirect("/Login")
                 }
                 const product_id = uuid.v4()
                 const username = user.username
@@ -31,6 +40,7 @@ const { findOne } = require('../models/User')
                 })
                 await newProduct.save()
                 res.json({msg: "Listed Product for Sale"})
+                console.log("an item was posted")
             } catch (err) {
                 return res.status(500).json({msg: err.message})
             }

@@ -16,7 +16,7 @@ const Post = () => {
     const postSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('http://localhost:8080/user/post', {...user})
+            await axios.post('http://localhost:8080/api/post', {...user})
             localStorage.setItem('firstPost', true)      
             window.location.href = "/";
         } catch (err) {
