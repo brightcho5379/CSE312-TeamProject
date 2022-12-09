@@ -1,7 +1,6 @@
 const Product = require('../models/Product')
 const User = require('../models/User')
 const uuid = require('uuid')
-const { findOne } = require('../models/User')
 
     const productController = {
         getProducts: async(req, res) => {
