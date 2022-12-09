@@ -5,13 +5,13 @@ import axios from 'axios'
 
 const Login = () => {
 
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log(email, password);
+        console.log(username, password);
 
         try {
             const config = {
@@ -20,8 +20,8 @@ const Login = () => {
                 }
             }
             setLoading(true);
-            const {data} = await axios.post('/user/login', {
-                email,
+            const {data} = await axios.post('http://localhost:8080/user/login', {
+                username,
                 password,
             },
             config
@@ -56,8 +56,8 @@ const Login = () => {
         <div className="login-page">
             <form onSubmit={submitHandler}>
                 <h2>Login</h2>
-                <input type="email" name="email" required
-                placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="username" name="username" required
+                placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 <br/>
                 <input type="password" name="password" required autoComplete="on"
                 placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />

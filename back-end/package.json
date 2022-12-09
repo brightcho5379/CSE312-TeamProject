@@ -7,10 +7,10 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd front-end && npm run start",
-    "server-install": "npm install",
     "client-install": "cd client && npm install",
-    "install-all": "concurrently \"npm run server-install\" \"npm run client-install\"",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server-install": "npm install",
+    "install-all": "concurrently \"npm run client-install\" \"npm run server-install\" ",
+    "dev": "concurrently  \"npm run client\" \"npm run server\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],

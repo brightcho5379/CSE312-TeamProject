@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const Register = () => {
     const [user, setUser] = useState({
-        name:'', email:'', password: '', university: ''
+        username:'', email:'', password: '', university: ''
     })
 
     const onChangeInput = e =>{
@@ -15,7 +15,7 @@ const Register = () => {
     const registerSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('/user/register', {...user})
+            await axios.post('http://localhost:8080/user/register', {...user})
 
             localStorage.setItem('firstLogin', true)
 
@@ -30,10 +30,10 @@ const Register = () => {
         <div className="login-page">
             <form onSubmit={registerSubmit}>
                 <h2>Register</h2>
-                <input type="text" name="name" required
+                <input type="text" name="username" 
                 placeholder="Name" value={user.username} onChange={onChangeInput} />
 
-                <input type="email" name="email" required
+                <input type="email" name="email" 
                 placeholder="Email" value={user.email} onChange={onChangeInput} />
 
                 <input type="password" name="password" required autoComplete="on"
