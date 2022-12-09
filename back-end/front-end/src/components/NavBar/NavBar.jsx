@@ -5,6 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./index.css";
 
 class NavBar extends Component {
+  handleSearchInput = (event) => {
+    // get the value of the search input
+    const searchValue = event.target.value;
+
+    // do something with the search value, such as send it to a search API
+  }
   render() {
     return (
       <React.Fragment>
@@ -70,7 +76,11 @@ class NavBar extends Component {
 
                     <li className = 'nav-search'>
                       <FontAwesomeIcon icon = {faSearch} className = 'searchBarIcon' color = "#4d4d4e"/>
-                      <input type = 'text' className = 'searchBarText' placeholder = 'Search..'/>
+                        <input
+                        type="text"
+                        className="searchBarText"
+                        placeholder="Search.."
+                        onInput={this.handleSearchInput}/>
                     </li>
                     <li className="nav-item">
                         <Link to="/Favorites" className="nav-link">

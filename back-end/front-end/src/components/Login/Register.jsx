@@ -1,11 +1,10 @@
-
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 const Register = () => {
     const [user, setUser] = useState({
-        name:'', email:'', password: ''
+        name:'', email:'', password: '', university: ''
     })
 
     const onChangeInput = e =>{
@@ -32,7 +31,7 @@ const Register = () => {
             <form onSubmit={registerSubmit}>
                 <h2>Register</h2>
                 <input type="text" name="name" required
-                placeholder="Name" value={user.name} onChange={onChangeInput} />
+                placeholder="Name" value={user.username} onChange={onChangeInput} />
 
                 <input type="email" name="email" required
                 placeholder="Email" value={user.email} onChange={onChangeInput} />
@@ -40,8 +39,8 @@ const Register = () => {
                 <input type="password" name="password" required autoComplete="on"
                 placeholder="Password" value={user.password} onChange={onChangeInput} />
 
-                <input type="confirm_password" name="confirm_password" required autoComplete="on"
-                placeholder="Re-enter Password" value={user.password} onChange={onChangeInput} />
+                <input type="university" name="university" required autoComplete="on"
+                placeholder="Enter University" value={user.university} onChange={onChangeInput} />
 
                 <div className="row">
                     <button type="submit">Register</button>
