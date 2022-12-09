@@ -7,12 +7,10 @@ const Login = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const submitHandler = async (e) => {
         e.preventDefault();
         console.log(username, password);
-
         try {
             const config = {
                 headers: {
@@ -29,8 +27,9 @@ const Login = () => {
             console.log(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
             setLoading(false);
-        } catch (error) {
-            setError(error.response.data.message);
+            window.location.href = "/";
+        } catch (err) {
+            alert(err.response.data.msg);
         }
     }
     // const [user, setUser] = useState({
