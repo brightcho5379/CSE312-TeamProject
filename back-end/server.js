@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
-const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const app = express();
 const cookieParser = require('cookie-parser')
@@ -19,9 +18,6 @@ app.use(cors({
     methods: ['GET', 'POST'],
     credentials: true
   }));
-app.use(fileUpload({
-    useTempFiles: true
-}))
 app.use(cookieParser())
 
 
@@ -35,7 +31,7 @@ mongoose.connect(URI, () =>
     console.log('Connected to MongoDB')
 )
 
-const PORT = process.env.PORT || 8080
+const server = PORT = process.env.PORT || 8080
 app.listen(PORT, () =>{
     console.log('Server is running on port', PORT)
 })

@@ -14,11 +14,10 @@ const productController = {
 
         createProducts: async(req, res) =>{
             try {
+                console.log(req)
                 const {item, price, description} = req.body;
-                const images = req.file.filename
-                
+                const images = req.file.path
                 const current_cookie = req.cookie;
-                console.log(current_cookie)
                 if (!images) {
                     return res.status(400).json({msg: "Missing image field"})
                 }
