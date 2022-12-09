@@ -13,13 +13,6 @@ import Slider from "react-slick";
 
 const Home = () => {
   /* Slide Show functionality */
-  const [suggestions, setSuggestions] = useState([]);
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => {
-      setSuggestions(data);
-    });
-  });
 
   let settings = {
     infinite: true,
@@ -60,11 +53,6 @@ const Home = () => {
       <div className = "HighBox">
         {/*<div className = "bgBox"></div>*/}
           <div className = "HighlightBox">
-          {suggestions.length === 0 ? (
-          <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
-          </div>
-      ) : (
         <Slider {...settings}>
           <div className="out">
                 <img
@@ -95,7 +83,7 @@ const Home = () => {
                 />
             </div>
         </Slider>
-      )}
+      
           </div>
       </div>
 

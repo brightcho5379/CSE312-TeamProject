@@ -16,7 +16,7 @@ const crypto = require("crypto");
                 const passwordHash = await bcrypt.hash(password, 10)
                 const cookie_value = crypto.randomBytes(20).toString('hex');
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-                res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
+                res.cookie('auth', cookie_value, {expires: expirationDate});
                 
                 const newUser = new Users({
                     username, email, password: passwordHash, university, cookie:cookie_value
@@ -43,9 +43,15 @@ const crypto = require("crypto");
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 const filter = { username: username };
                 const update = { cookie: cookie_value };
+
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
-                return res.cookie("auth", cookie_value, { expires: expirationDate, httpOnly: true }).redirect("/");
+                const cookiee = req.cookie
+                if (cookiee === undefined){
+                    res.cookie('auth', cookie_value, {httpOnly: true, expires: expirationDate})
+                    console.log('cookie created successfully')
+                    res.redirect("/")
+                }        
                 } catch (err) {
                 return res.status(500).json({msg: err.message});
             }
