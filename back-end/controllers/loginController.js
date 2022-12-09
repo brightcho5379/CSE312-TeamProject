@@ -13,7 +13,6 @@ const crypto = require("crypto");
                 const user_username = await Users.findOne({username})
                 if(user_username) return res.status(400).json({msg: "This username already exists."})
                 if(password.length < 6) return res.status(400).json({msg: "Password is at least 6 characters long."})
-                
                 const passwordHash = await bcrypt.hash(password, 10)
                 const cookie_value = crypto.randomBytes(20).toString('hex');
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -35,7 +34,7 @@ const crypto = require("crypto");
                 const { username, password } = req.body;
                 const user = await Users.findOne({ username });
                 if (!user) {
-                    return res.redirect("/register").status(400).json({ msg: "Username does not exist." });
+                    return res.status(400).json({ msg: "Username does not exist." });
                 }
                 const isMatch = await bcrypt.compare(password, user.password);
                 if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });

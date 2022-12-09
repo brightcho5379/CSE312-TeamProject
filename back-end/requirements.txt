@@ -1,0 +1,12 @@
+    bcrypt
+    body-parse
+    body-parser
+    concurrently
+    cors
+    dotenv
+    express
+    express-fileupload
+    mongodb
+    mongoose
+    nodemon
+    uuid
