@@ -1,6 +1,7 @@
 const Product = require('../models/Product')
 const User = require('../models/User')
 const uuid = require('uuid')
+const { findOne } = require('../models/User')
 
     const productController = {
         getProducts: async(req, res) => {
@@ -15,12 +16,18 @@ const uuid = require('uuid')
         createProducts: async(req, res) =>{
             try {
                 const {item, price, description, images} = req.body;
+                const current_cookie = req.cookie;
                 if (!item || !price || !description || !images) {
                     return res.status(400).json({msg: "Missing required fields"})
                 }
+                const user = await User.findOne({current_cookie})
+                if(!user){
+                    res.redirect("/login")
+                }
                 const product_id = uuid.v4()
+                const username = user.username
                 const newProduct = new Product({
-                    item, price, description, images, product_id
+                    item, username, price, description, images, product_id
                 })
                 await newProduct.save()
                 res.json({msg: "Listed Product for Sale"})
