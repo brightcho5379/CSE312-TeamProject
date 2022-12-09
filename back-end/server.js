@@ -12,7 +12,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    credentials: true
+  }));
 app.use(fileUpload({
     useTempFiles: true
 }))

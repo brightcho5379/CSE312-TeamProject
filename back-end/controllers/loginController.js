@@ -16,12 +16,13 @@ const crypto = require("crypto");
                 const passwordHash = await bcrypt.hash(password, 10)
                 const cookie_value = crypto.randomBytes(20).toString('hex');
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-                res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
+                res.cookie('auth', cookie_value, {expires: expirationDate});
+                
                 const newUser = new Users({
                     username, email, password: passwordHash, university, cookie:cookie_value
                 })
                 await newUser.save()
-                return res.redirect('/')
+                res.json({msg : "Account Successfully Created"})
                 
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -29,12 +30,13 @@ const crypto = require("crypto");
         },
 
         //Login Request 
+        //Login Request 
         login: async (req, res) => {
             try {
                 const { username, password } = req.body;
                 const user = await Users.findOne({ username });
                 if (!user) {
-                    return res.redirect('localhost:3000/register').json({ msg: "Username does not exist." });
+                    return res.status(400).json({msg: "User does not exist."});
                 }
                 const isMatch = await bcrypt.compare(password, user.password);
                 if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });
@@ -44,7 +46,8 @@ const crypto = require("crypto");
                 const update = { cookie: cookie_value };
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
-                return res.cookie("auth", cookie_value, { expires: expirationDate, httpOnly: true }).redirect("/");
+                res.cookie('auth', cookie_value, {httpOnly: true, expires: expirationDate,domain:"localhost:3000",path:"/"})
+                res.redirect('/')    
                 } catch (err) {
                 return res.status(500).json({msg: err.message});
             }
