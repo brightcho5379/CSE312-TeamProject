@@ -14,7 +14,8 @@ const uuid = require('uuid')
 
         createProducts: async(req, res) =>{
             try {
-                const {item, price, description, images} = req.body;
+                const {item, price, description} = req.body;
+                const images = req.files.path;
                 const current_cookie = req.cookie;
                 if (!images) {
                     return res.status(400).json({msg: "Missing image field"})
