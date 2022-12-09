@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const app = express();
+const cookieParser = require('cookie-parser')
+const multer = require('multer');
 
 app.use(express.json())
 app.use(bodyParser.json())
@@ -20,6 +22,7 @@ app.use(cors({
 app.use(fileUpload({
     useTempFiles: true
 }))
+app.use(cookieParser())
 
 
 //Routes

@@ -1,8 +1,8 @@
-const Product = require('../models/Product')
 const User = require('../models/User')
+const Product = require('../models/Product')
 const uuid = require('uuid')
 
-    const productController = {
+const productController = {
         getProducts: async(req, res) => {
             try{
                 const displayProducts = await Product.find({}).sort({createdAt: 'desc'}).limit(10)
@@ -14,8 +14,11 @@ const uuid = require('uuid')
 
         createProducts: async(req, res) =>{
             try {
-                const {item, price, description, images} = req.body;
+                const {item, price, description} = req.body;
+                const images = req.file.filename
+                
                 const current_cookie = req.cookie;
+                console.log(current_cookie)
                 if (!images) {
                     return res.status(400).json({msg: "Missing image field"})
                 }
@@ -33,9 +36,9 @@ const uuid = require('uuid')
                     res.redirect("/Login")
                 }
                 const product_id = uuid.v4()
-                const username = user.username
+                const current_username = user['username']
                 const newProduct = new Product({
-                    item, username, price, description, images, product_id
+                    item, username:current_username, price, description, images, product_id
                 })
                 await newProduct.save()
                 res.json({msg: "Listed Product for Sale"})
