@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Post = () => {
     const [user, setUser] = useState({
-        item: '', price: '', item_desc: '', image: ''
+        item: '', price: '', description: '', images: ''
     })
 
     const onChangeInput = e =>{
@@ -33,11 +33,12 @@ const Post = () => {
                 <input type="price" name="price" 
                 placeholder="Price" value={user.price} onChange={onChangeInput} />
                 <br/>
-                <input type="item_desc" name="item_desc"
-                placeholder="Description" value={user.item_desc} onChange={onChangeInput} />
-                <input type="file" name="file" accept="image/png, image/jpeg, image/jpg" value={user.image} onChange={onChangeInput}/>
+                <input type="description" name="description"
+                placeholder="Description" value={user.description} onChange={onChangeInput} />
+                <input id="form-file" type="file" name="images" accept=".jpg, .png" value={user.images} onChange={onChangeInput}></input>
+
                 <div className="Post-Button">
-                <Link to = '/'><button type="submit">Post item</button></Link>
+                <button type="submit">Post item</button>
                 </div>
             </form>
         </div>

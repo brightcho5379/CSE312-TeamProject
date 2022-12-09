@@ -102,11 +102,11 @@ const Home = () => {
       </div>
       <h2>Recent Posts:</h2>
         {products.slice(0, 10).map(product => (
-                <div>
+                <div id = {product.product_id}>
+                  <p>Seller: {product.username}</p>
                   <p>Product: {product.item}</p>
                   <p>Price: {product.price}</p>
                   <p>Description: {product.description}</p>
-                  <p>Seller: {product.username}</p>
                   <img src={product.images} alt={product.name}/>
                 </div>
         ))}
