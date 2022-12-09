@@ -14,10 +14,10 @@ const productController = {
 
         createProducts: async(req, res) =>{
             try {
-                console.log(req)
+                // console.log(req)
                 const {item, price, description} = req.body;
                 const images = req.file.path
-                const current_cookie = req.cookie;
+                const cookie_dict = req.cookies;
                 if (!images) {
                     return res.status(400).json({msg: "Missing image field"})
                 }
@@ -30,11 +30,13 @@ const productController = {
                 if (!item) {
                     return res.status(400).json({msg: "Missing item field"})
                 }
-                const user = await User.findOne({current_cookie})
-                if(!user){
+                const current_cookie = cookie_dict.auth
+                const user = await User.findOne({"cookie":current_cookie})
+                if(!user || user == ""){
                     res.redirect("/Login")
                 }
                 const product_id = uuid.v4()
+                // console.log(current_cookie) 
                 const current_username = user['username']
                 const newProduct = new Product({
                     item, username:current_username, price, description, images, product_id
@@ -49,9 +51,26 @@ const productController = {
 
         viewCart: async(req, res) =>{
             try {
-                const current_cookie = req.cookie;
-                const user = await User.findOne({current_cookie})
-                if(!user){
+                const cookie_dict = req.cookies;
+                const current_cookie = cookie_dict.auth
+                const user = await User.findOne({"cookie":current_cookie})
+                if(!user|| user == ""){
+                    res.redirect("/Login")
+                }
+                else{
+                    const user_cart = await user["cart"]
+                    return res.json(user_cart)
+                }
+            } catch (err) {
+                return res.status(500).json({msg: err.message})
+            }
+        },
+        addToCart: async(req, res) =>{
+            try {
+                const cookie_dict = req.cookies;
+                const current_cookie = cookie_dict.auth
+                const user = await User.findOne({"cookie":current_cookie})
+                if(!user || user == ""){
                     res.redirect("/Login")
                 }
                 else{

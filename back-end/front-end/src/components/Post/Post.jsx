@@ -3,6 +3,9 @@ import './Post.css'
 import axios from 'axios'
 import File from'react'
 
+const axiosInstance = axios.create({
+    withCredentials: true
+});
 
 const Post = () => {
     const [user, setUser] = useState({
@@ -17,7 +20,7 @@ const Post = () => {
     const onChangeFile = (e) => {
         // Update the user.images state with the selected files
         setUser({...user, images: e.target.files[0]});
-      };
+    };
 
     const postSubmit = async (e) => {
         e.preventDefault();
@@ -35,57 +38,57 @@ const Post = () => {
         }
         try {
           // Send the form data object to the back-end with the appropriate request headers
-          await axios.post("http://localhost:8080/api/post", formData, {
+        await axiosInstance.post("http://localhost:8080/api/post", formData, {
             headers: {
-              "Content-Type": "multipart/form-data",
+                "Content-Type": "multipart/form-data",
             },
-          });
-          localStorage.setItem("firstPost", true);
-          window.location.href = "/";
+            });
+            localStorage.setItem("firstPost", true);
+            window.location.href = "/";
         } catch (err) {
-          alert(err.response.data.msg);
+            alert(err.response.data.msg);
         }
-      };
+    };
 
     return (
         <div className="Post-page">
         <form onSubmit={postSubmit}>
-          <h2>Post</h2>
-          <input
+        <h2>Post</h2>
+        <input
             type="item"
             name="item"
             placeholder="Item"
             value={user.item}
             onChange={onChangeInput}
-          />
-          <input
+        />
+        <input
             type="price"
             name="price"
             placeholder="Price"
             value={user.price}
             onChange={onChangeInput}
-          />
-          <br />
-          <input
+        />
+        <br />
+        <input
             type="description"
             name="description"
             placeholder="Description"
             value={user.description}
             onChange={onChangeInput}
-          />
-          <input
+        />
+        <input
             id="form-file"
             type="file"
             name="images"
             accept=".jpg, .png"
             onChange={onChangeFile}
-          ></input>
-  
-          <div className="Post-Button">
+        ></input>
+
+        <div className="Post-Button">
             <button type="submit">Post item</button>
-          </div>
+        </div>
         </form>
-      </div>
+    </div>    
     )
 }
 

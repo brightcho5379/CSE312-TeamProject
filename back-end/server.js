@@ -13,12 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser())
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true
   }));
-app.use(cookieParser())
+app.use(express.static(__dirname + '/public'));
 
 
 //Routes

@@ -5,7 +5,8 @@ const {upload} = require('../middleware/image')
 
 router.get('/products', productController.getProducts)
 router.post('/post', upload.single("images") ,productController.createProducts)
-router.get('/cart',productController.viewCart)
+router.post('/cart', productController.addToCart)
+router.get('/viewcart',productController.viewCart)
 
 
 module.exports = router
