@@ -23,14 +23,16 @@ const Post = () => {
         e.preventDefault();
     
         // Create a new FormData object
-        const formData = new FormData();
+        let formData = new FormData();
         // Append the other form fields to the form data object
         formData.append("item", user.item);
         formData.append("price", user.price);
         formData.append("description", user.description);
         // Append the file to the form data object
         formData.append("images", user.images);
-    
+        if (formData.keys().length === 0) {
+            return;
+        }
         try {
           // Send the form data object to the back-end with the appropriate request headers
           await axios.post("http://localhost:8080/api/post", formData, {
