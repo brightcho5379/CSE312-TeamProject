@@ -47,7 +47,7 @@ const crypto = require("crypto");
 
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
-                res.cookie('auth', cookie_value, {httpOnly: true, expires: expirationDate,domain:"localhost:3000",path:"/"})
+                res.cookie('auth', cookie_value, {httpOnly: false, expires: expirationDate})
                 res.redirect('/')    
                 } catch (err) {
                 return res.status(500).json({msg: err.message});
