@@ -7,7 +7,7 @@ function Login() {
 
     const axiosInstance = axios.create({
         withCredentials: true
-      });
+    });
     const [user, setUser] = useState({
         username:'', password: ''
     })

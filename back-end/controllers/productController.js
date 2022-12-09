@@ -5,12 +5,13 @@ const uuid = require('uuid')
     const productController = {
         getProducts: async(req, res) => {
             try{
-                const displayProducts = await Product.find({}).limit(10)
+                const displayProducts = await Product.find({}).sort({createdAt: 'desc'}).limit(10)
                 res.json(displayProducts)
             }catch(err){
                 return res.status(500).json({msg: err.message})
             }
         },
+
         createProducts: async(req, res) =>{
             try {
                 const {item, price, description, images} = req.body;
@@ -27,6 +28,7 @@ const uuid = require('uuid')
                 return res.status(500).json({msg: err.message})
             }
         },
+
         viewCart: async(req, res) =>{
             try {
                 const current_cookie = req.cookie;

@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     images:{
-        type: Object,
+        type: Buffer,
         required: true
     },
     product_id:{
