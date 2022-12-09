@@ -3,6 +3,11 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 const Register = () => {
+
+    const axiosInstance = axios.create({
+        withCredentials: true
+      });
+
     const [user, setUser] = useState({
         username:'', email:'', password: '', university: ''
     })
@@ -15,7 +20,7 @@ const Register = () => {
     const registerSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('http://localhost:8080/user/register', {...user})
+            await axiosInstance.post('http://localhost:8080/user/register', {...user})
 
             localStorage.setItem('firstLogin', true)
             
