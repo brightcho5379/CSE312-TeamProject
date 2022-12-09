@@ -102,7 +102,7 @@ const Home = () => {
       </div>
       <h2>Recent Posts:</h2>
         {products.slice(0, 10).map(product => (
-                <div id = {product.product_id}>
+                <div key = {product.product_id}>
                   <p>Seller: {product.username}</p>
                   <p>Product: {product.item}</p>
                   <p>Price: {product.price}</p>
