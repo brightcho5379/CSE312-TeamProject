@@ -5,8 +5,6 @@ export default class UserProfile extends Component {
   state = {
     name: 'John Doe',
     email: 'john.doe@example.com',
-    phone: '555-555-5555',
-    address: '123 Main Street, Anytown USA',
     orderHistory: []
   }
 

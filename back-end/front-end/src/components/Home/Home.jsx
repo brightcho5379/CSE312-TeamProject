@@ -105,9 +105,9 @@ const Home = () => {
                 <div key = {product.product_id}>
                   <p>Seller: {product.username}</p>
                   <p>Product: {product.item}</p>
-                  <p>Price: {product.price}</p>
+                  <p>Price: ${product.price}</p>
                   <p>Description: {product.description}</p>
-                  <img src={product.images} alt={product.name}/>
+                  <img src={product.images} alt={product.item}/>
                 </div>
         ))}
     </>

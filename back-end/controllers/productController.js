@@ -6,7 +6,6 @@ const uuid = require('uuid')
         getProducts: async(req, res) => {
             try{
                 const displayProducts = await Product.find({}).sort({createdAt: 'desc'}).limit(10)
-                
                 res.json(displayProducts)
             }catch(err){
                 return res.status(500).json({msg: err.message})
@@ -15,8 +14,7 @@ const uuid = require('uuid')
 
         createProducts: async(req, res) =>{
             try {
-                const {item, price, description} = req.body;
-                const images = req.files.path;
+                const {item, price, description, images} = req.body;
                 const current_cookie = req.cookie;
                 if (!images) {
                     return res.status(400).json({msg: "Missing image field"})
