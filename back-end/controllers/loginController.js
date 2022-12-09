@@ -22,7 +22,7 @@ const crypto = require("crypto");
                     username, email, password: passwordHash, university, cookie:cookie_value
                 })
                 await newUser.save()
-                res.json({msg:"COMPLETE"})
+                return res.redirect('/')
                 
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -30,28 +30,27 @@ const crypto = require("crypto");
         },
 
         //Login Request 
-        login: async (req, res) =>{
+        login: async (req, res) => {
             try {
-                const {username, password} = req.body;
-                const user = await Users.findOne({username})
-                if(!user){
-                    return res.redirect('/register').status(400).json({msg: "Username does not exist."})
-                } 
-                const isMatch = await bcrypt.compare(password, user.password)
-                if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
-                const cookie_value = crypto.randomBytes(20).toString('hex');
+                const { username, password } = req.body;
+                const user = await Users.findOne({ username });
+                if (!user) {
+                    return res.redirect("/register").status(400).json({ msg: "Username does not exist." });
+                }
+                const isMatch = await bcrypt.compare(password, user.password);
+                if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });
+                const cookie_value = crypto.randomBytes(20).toString("hex");
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-                res.cookie('auth', cookie_value, {expires: expirationDate, httpOnly: true});
-                const filter = {"username": username};
-                const update = {"cookie": cookie_value};
+                const filter = { username: username };
+                const update = { cookie: cookie_value };
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
-                await updatedUser.save()
-                return res.redirect('/').status(400).json({msg: "Log In Successful"})
-                
-            } catch (err) {
-                return res.status(500).json({msg: err.message})
+                await updatedUser.save();
+                return res.cookie("auth", cookie_value, { expires: expirationDate, httpOnly: true }).redirect("/");
+                } catch (err) {
+                return res.status(500).json({ msg: err.message });
             }
         },
+            
         
         logout: async (req, res) => {
             try {
