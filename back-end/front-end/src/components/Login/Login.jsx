@@ -5,6 +5,9 @@ import axios from 'axios'
 
 function Login() {
 
+    const axiosInstance = axios.create({
+        withCredentials: true
+      });
     const [user, setUser] = useState({
         username:'', password: ''
     })
@@ -17,7 +20,7 @@ function Login() {
     const submitHandler = async e =>{
         e.preventDefault()
         try {
-            await axios.post('http://localhost:8080/user/login', {...user})
+            await axiosInstance.post('http://localhost:8080/user/login', {...user})
 
             //localStorage.setItem('firstLogin', true)
             
