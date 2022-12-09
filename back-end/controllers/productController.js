@@ -6,6 +6,7 @@ const uuid = require('uuid')
         getProducts: async(req, res) => {
             try{
                 const displayProducts = await Product.find({}).sort({createdAt: 'desc'}).limit(10)
+                
                 res.json(displayProducts)
             }catch(err){
                 return res.status(500).json({msg: err.message})
