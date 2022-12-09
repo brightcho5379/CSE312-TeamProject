@@ -16,7 +16,7 @@ const Post = () => {
     const postSubmit = async e =>{
         e.preventDefault()
         try {
-            await axios.post('/user/post', {...user})
+            await axios.post('http://localhost:8080/user/post', {...user})
             localStorage.setItem('firstPost', true)      
             window.location.href = "/";
         } catch (err) {
@@ -36,7 +36,7 @@ const Post = () => {
                 <input type="item_desc" name="item_desc"
                 placeholder="Description" value={user.item_desc} onChange={onChangeInput} />
                 <input type="file" name="file" accept="image/png, image/jpeg, image/jpg" value={user.image} onChange={onChangeInput}/>
-                <div className="Login-Button">
+                <div className="Post-Button">
                 <Link to = '/'><button type="submit">Post item</button></Link>
                 </div>
             </form>

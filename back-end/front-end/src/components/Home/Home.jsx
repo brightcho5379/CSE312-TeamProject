@@ -87,7 +87,17 @@ const Home = () => {
           </div>
       </div>
 
-      {/* Categories and it's description */}
+
+
+
+
+
+
+
+
+
+
+      {/* Categories and it's description 
       <div className = "categories">
         Categories
       </div>
@@ -97,9 +107,9 @@ const Home = () => {
       <div className = "centerButton">
       <Link to = '/all' className = 'flat-button1 margin-auto'>Shop All</Link>
       </div>
-      {/* ------------------------------- */}
+      {/* ------------------------------- 
 
-      {/* These hold the three Main Categories */}
+
       <div className = "categoryTypes">
 
         <div className = "HomeGoodsBox"></div>
@@ -124,9 +134,7 @@ const Home = () => {
         </div>
 
       </div>
-      {/* ------------------------------------ */}
 
-      {/* Posts and it's description */}
 
       <div className = "containerPosts"></div>
       <div className = "posts">
@@ -152,10 +160,10 @@ const Home = () => {
             <div className = "Post3Box"></div>
           </div>
       </div>
-      {/* ------------------------------- */}
 
 
-      {/* Auctions and it's description */}
+
+       Auctions and it's description 
       <div className = "auctions">
       Auctions
       </div>
@@ -179,8 +187,8 @@ const Home = () => {
             <div className = "Auction3Box"></div>
           </div>
       </div>
-      {/* ------------------------------- */}
-
+      ------------------------------- */}
+    
     </>
   );
 }
