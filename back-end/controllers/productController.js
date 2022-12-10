@@ -60,9 +60,9 @@ const productController = {
             try {
                 const cookie_dict = req.cookies;
                 const current_cookie = cookie_dict.auth
-                const user = await User.findOne({"cookie":current_cookie})
+                const user = await User.findOne({cookie:current_cookie})
                 if(!user|| user == ""){
-                    res.redirect("/Login")
+                    res.redirect("localhost:3000/Login")
                 }
                 else{
                     const user_cart = await user["cart"]
@@ -74,14 +74,20 @@ const productController = {
         },
         addToCart: async(req, res) =>{
             try {
+                const product = req.body;
                 const cookie_dict = req.cookies;
                 const current_cookie = cookie_dict.auth
-                const user = await User.findOne({"cookie":current_cookie})
+                const user = await User.findOne({cookie:current_cookie})
+                const user_cart = user["cart"]
+                user_cart.append(product)
+                const filter = { username : user.username };
+                const update = { cart : user_cart };
+                const updatedUser = await Users.findOneAndUpdate(filter, update);
+                await updatedUser.save();
                 if(!user || user == ""){
-                    res.redirect("/Login")
+                    res.redirect("localhost:3000/Login")
                 }
                 else{
-                    const user_cart = await user["cart"]
                     return res.json(user_cart)
                 }
             } catch (err) {

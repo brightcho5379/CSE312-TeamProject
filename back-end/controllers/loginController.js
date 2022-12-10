@@ -43,7 +43,6 @@ const crypto = require("crypto");
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 const filter = { username: username };
                 const update = { cookie: cookie_value };
-               
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
             
@@ -53,22 +52,17 @@ const crypto = require("crypto");
                 return res.status(500).json({msg: err.message});
             }
         },
-            
-        
         logout: async (req, res) => {
             try {
-                const current_cookie = req.cookies;
+                const cookie_dict = req.cookies;
+                const current_cookie = cookie_dict.auth
                 if(!current_cookie){
-                    res.redirect('/login')
+                    res.redirect('localhost:3000/Login')
                     return res.json({msg:"You are not Logged In"})
                 }
-                const user = await Users.findOne({current_cookie})
-                const filter = { "username" : user.username };
-                const update = { "cookie" : "" };
-                Users.findOneAndUpdate(filter, update, function(err, doc) {
-                    if (err) return res.send(500, {error: err});
-                });
-                return res.clearCookie('auth', {httpOnly: true}).redirect('/').json({msg: "Logged out"})
+                const filter = { username : user.username };
+                const update = { cookie : "" };
+                return res.clearCookie('auth', {httpOnly: true}).redirect('localhost:3000/').json({msg: "Logged out"})
 
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -77,15 +71,15 @@ const crypto = require("crypto");
         viewAccount: async(req, res) => {
             try {
                 const cookie_dict = req.cookies;
-                console.log(cookie_dict)
                 const current_cookie = cookie_dict.auth
 
                 const user = await Users.findOne({"cookie":current_cookie})
-                const current_username = user['username']
-                const current_email = user['email']
-                const current_university = user['university']
-                return res.json(user)
-                
+                if(!user || current_cookie == ""){
+                    res.redirect('localhost:3000/Login')
+                }
+                else{
+                    return res.json(user)
+                }
             } catch (err) {
                 return res.status(500).json({msg: err.message})
             }
