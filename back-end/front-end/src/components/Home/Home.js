@@ -118,8 +118,8 @@ const Home = () => {
       </div>
       <h2>Recent Posts:</h2>
         {products.slice(0, 10).map(product => (
-                <div className = "different">
                 <div key = {product.product_id}>
+                  <div className = "different">
                   <p>Seller: {product.username}</p>
                   <p>Product: {product.item}</p>
                   <p>Price: ${product.price}</p>

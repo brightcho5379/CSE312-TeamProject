@@ -33,11 +33,11 @@ function Login() {
         <div className="login-page">
             <form onSubmit={submitHandler}>
                 <h2>Login</h2>
-                <input type="username" name="username" required
-                placeholder="Username" value={user.username} onChange={onChangeInput} />
+                <input type="username" name="username" 
+                placeholder="Username" value={encodeURIComponent(user.username)} onChange={onChangeInput} />
                 <br/>
-                <input type="password" name="password" required autoComplete="on"
-                placeholder="Password" value={user.password} onChange={onChangeInput} />
+                <input type="password" name="password"
+                placeholder="Password" value={encodeURIComponent(user.password)}  onChange={onChangeInput} />
 
                 <div className="Login-Button">
                     <button type="submit">Login</button>
