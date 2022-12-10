@@ -20,11 +20,15 @@ const Profile = () => {
   }, []);
 
   console.log(account)
-
-
+  
     return (
       <div>
+        <div>
         <h1>Profile Information:</h1>
+        <p>Username: {account.username}</p>
+        <p>Email: {account.email}</p>
+        <p>University: {account.university}</p>
+        </div>
 
       </div>
     );
