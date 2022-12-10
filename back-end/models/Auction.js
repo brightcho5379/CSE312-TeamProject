@@ -15,10 +15,6 @@ const AuctionSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
-    created: {
-        type: Date,
-        default: Date.now
-  },
     bidStart: {
     type: Date,
     default: Date.now

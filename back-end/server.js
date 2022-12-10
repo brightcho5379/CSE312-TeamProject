@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express();
 const cookieParser = require('cookie-parser')
-const multer = require('multer');
+const websocket = require("./controllers/auctionController");
+
 
 app.use(express.json())
 app.use(bodyParser.json())
@@ -25,7 +26,8 @@ app.use(express.static(__dirname + '/public'));
 //Routes
 app.use('/user',require('./routes/login.js'))
 app.use('/api',require('./routes/product.js'))
-// app.use('/auction',require('./routes/auction.js'))
+
+
 
 const URI = process.env.DATABASE_URI
 mongoose.connect(URI, () =>
@@ -36,3 +38,5 @@ const server = PORT = process.env.PORT || 8080
 app.listen(PORT, () =>{
     console.log('Server is running on port', PORT)
 })
+
+// websocket(server)

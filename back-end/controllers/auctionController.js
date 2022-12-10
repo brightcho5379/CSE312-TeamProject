@@ -1,33 +1,33 @@
-const Product = require('../models/Product')
-const User = require('../models/User')
-const WebSocket = require('ws');
+// const Product = require('../models/Product')
+// const User = require('../models/User')
 
-const wss = new WebSocket.Server({ port: 8080 });
 
-class AuctionController {
-    constructor() {
-        this.items = {
-            item1: {
-            currentBid: 0,
-            currentBidder: '',
-            },
-        item2: {
-            currentBid: 0,
-            currentBidder: '',
-            },
-        };
-    }
-    bid(item, bid, bidder) {
-        if (bid > this.items[item].currentBid) {
-            this.items[item].currentBid = bid;
-            this.items[item].currentBidder = bidder;
-        }
-    }
-    getWinningBids() {
-        return this.items;
-    }
-    auctionEnded() {
-      // determine if the auction has ended
-      // return true or false
-    }
-  }
+// module.exports = (server) => {
+//     const io = require('socket.io').listen(server)
+//     io.on('connection', function(socket){
+//         socket.on('join auction room', data => {
+//             socket.join(data.room)
+//         })
+//         socket.on('leave auction room', data => {
+//             socket.leave(data.room)
+//         })
+//         socket.on('new bid', data => {
+//             bid(data.bidInfo, data.room)
+//         })
+//     })
+//     const bid = async (bid, auction) => {
+//         try {
+//           let result = await Auction.findOneAndUpdate({_id:auction, $or: [{'bids.0.bid':{$lt:bid.bid}},{bids:{$eq:[]}} ]}, {$push: {bids: {$each:[bid], $position: 0}}}, {new: true})
+//                 .populate('bids.bidder', '_id name')
+//                 .populate('seller', '_id name')
+//                 .exec()
+//             io
+//             .to(auction)
+//             .emit('new bid', result)
+//         } catch(err) {
+//           console.log(err)
+//         }
+//     }
+
+
+// }
