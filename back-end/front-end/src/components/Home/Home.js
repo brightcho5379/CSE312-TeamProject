@@ -106,7 +106,8 @@ const Home = () => {
                   <p>Product: {product.item}</p>
                   <p>Price: ${product.price}</p>
                   <p>Description: {product.description}</p>
-                  <img src={product.images} alt={product.item}/>
+                  <img src={product.images} alt={product.item} width="450" 
+     height="400"/>
                   
                 </div>
         ))}
