@@ -34,10 +34,8 @@ class NavBar extends Component {
   }
 
 
-
-
   render() {
-    if (hasCookies()){
+    if(hasCookies()){
       return (
         <React.Fragment>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
@@ -61,7 +59,7 @@ class NavBar extends Component {
                       <ul className="navbar-nav mr-auto">
                       
                       <li className="nav-item">
-                          <button onClick ={refreshPage}>Logout</button>       
+                          <button onClick ={refreshPage}><b>Logout</b></button>       
                       </li>
 
                       <li className="nav-item">
