@@ -47,7 +47,7 @@ const crypto = require("crypto");
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
             
-                res.cookies('auth', cookie_value, {httpOnly: false, expires: expirationDate})
+                res.cookie('auth', cookie_value, {httpOnly: false, expires: expirationDate})
                 res.json({msg: "You are now logged in"})
                 } catch (err) {
                 return res.status(500).json({msg: err.message});
