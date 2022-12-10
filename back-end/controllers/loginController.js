@@ -47,7 +47,7 @@ const crypto = require("crypto");
                 const updatedUser = await Users.findOneAndUpdate(filter, update);
                 await updatedUser.save();
             
-                res.cookie('auth', cookie_value, {httpOnly: false, expires: expirationDate})
+                res.cookies('auth', cookie_value, {httpOnly: false, expires: expirationDate})
                 res.json({msg: "You are now logged in"})
                 } catch (err) {
                 return res.status(500).json({msg: err.message});
@@ -70,6 +70,21 @@ const crypto = require("crypto");
                 });
                 return res.clearCookie('auth', {httpOnly: true}).redirect('/').json({msg: "Logged out"})
 
+            } catch (err) {
+                return res.status(500).json({msg: err.message})
+            }
+        },
+        viewAccount: async(req, res) => {
+            try {
+                const cookie_dict = req.cookies;
+                const current_cookie = cookie_dict.auth
+                const user = await User.findOne({"cookie":current_cookie})
+                if(!user || user == ""){
+                    res.redirect("/Login")
+                }
+                else{
+                    return res.json(user)
+                }
             } catch (err) {
                 return res.status(500).json({msg: err.message})
             }
