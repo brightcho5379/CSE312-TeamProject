@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './index.css';
 import "bootstrap/dist/css/bootstrap.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -42,9 +43,11 @@ const Auction = () => {
 
   return (
     <>
+    <br/>
       <h2>Auction Recent Posts:</h2>
         {products.slice(0, 10).map(product => (
                 <div key = {product.product_id}>
+                  <div className = "difft">
                   <p>Seller: {product.username}</p>
                   <p>Product: {product.item}</p>
                   <p>Price: ${product.price}</p>
@@ -53,6 +56,7 @@ const Auction = () => {
                   <form onSubmit={submitHandler}>
                   <button type="submit">Add to cart</button>
                   </form>
+                  </div>
                   
                 </div>
         ))}
