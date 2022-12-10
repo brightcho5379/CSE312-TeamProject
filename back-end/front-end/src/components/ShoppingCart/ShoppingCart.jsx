@@ -1,58 +1,32 @@
-import React , { Component, } from 'react';
-import ReactDOM from 'react-dom';
+import React, {useEffect, useState, Component} from 'react';
+import axios from 'axios';
+const axiosInstance = axios.create({
+  withCredentials: true
+});
 
-export default class ShoppingCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: []
-    };
-  }
+const ShoppingCart = () =>  {
+  const[cart, setCart] = useState([]);
 
-  addToCart(item) {
-    this.setState({
-      items: this.state.items.concat([item])
-    });
-  }
+  useEffect(() => {
+    // Fetch the data from the back-end
+    axiosInstance.get('http://localhost:8080/api/viewcart')
+      .then(res => {
+        setCart(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
 
-  removeFromCart(item) {
-    this.setState({
-      items: this.state.items.filter(i => i.id !== item.id)
-    });
-  }
+  console.log(cart)
 
-  render() {
+
     return (
       <div>
         <h1>Shopping Cart</h1>
-        {this.state.items.map(item => (
-          <Product
-            key={item.id}
-            item={item}
-            image={item.image}
-            name={item.name}
-            description={item.description}
-            price={item.price}
-            category={item.category}
-            removeFromCart={this.removeFromCart.bind(this)}
-          />
-        ))}
+        
       </div>
     );
-  }
+  
 }
-
-function Product(props) {
-  return (
-    <div>
-      <img src={props.image} alt={props.name} />
-      <h2>{props.name}</h2>
-      <p>{props.description}</p>
-      <p>Price: {props.price}</p>
-      <p>Category: {props.category}</p>
-      <button onClick={() => props.removeFromCart(props.item)}>
-        Remove from Cart
-      </button>
-    </div>
-  );
-}
+export default ShoppingCart;

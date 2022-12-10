@@ -20,7 +20,7 @@ const Home = () => {
   const submitHandler = async (e, product) => {
     e.preventDefault();
     try {
-      await axiosInstance.post('http://localhost:8080/addToCart', { product });
+      await axiosInstance.post('http://localhost:8080/api/cart', { product });
       window.location.href = "/";
     } catch (err) {
       alert(err.response.data.msg);
