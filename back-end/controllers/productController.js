@@ -16,7 +16,6 @@ const productController = {
             try {
                 // console.log(req)
                 const {item, price, description} = req.body;
-                const images = req.file.path
                 const cookie_dict = req.cookies;
                 const final = req.file.path
                 console.log(final)
@@ -25,7 +24,6 @@ const productController = {
                 const src = end[3]
                 const images = './../../' + folder + '/' + src
                 console.log(src)
-                const current_cookie = req.cookie;
                 if (!images) {
                     return res.status(400).json({msg: "Missing image field"})
                 }
