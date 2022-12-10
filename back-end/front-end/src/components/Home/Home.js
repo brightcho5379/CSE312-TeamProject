@@ -9,10 +9,8 @@ import tshirts from './images/tshirts.jpg';
 import Slider from "react-slick";
 import axios from 'axios';
 
-
-
-
 const Home = () => {
+  
   /* Fetching items from items back-end*/
   const[products, setProducts] = useState([]);
 
@@ -27,6 +25,7 @@ const Home = () => {
       });
   }, []);
 
+  console.log(products)
   /* Slide Show functionality */
 
   let settings = {
@@ -108,6 +107,7 @@ const Home = () => {
                   <p>Price: ${product.price}</p>
                   <p>Description: {product.description}</p>
                   <img src={product.images} alt={product.item}/>
+                  
                 </div>
         ))}
     </>
