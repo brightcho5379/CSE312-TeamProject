@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 
 export default class UserProfile extends Component {
   state = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
+    name: 'Jason Mai',
+    email: 'jtmai2@buffalo.edu',
     orderHistory: []
   }
 
