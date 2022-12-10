@@ -1,5 +1,8 @@
 import React, {useEffect, useState, Component} from 'react';
 import axios from 'axios';
+const axiosInstance = axios.create({
+  withCredentials: true
+});
 
 const Profile = () => {
 
@@ -7,7 +10,7 @@ const Profile = () => {
 
   useEffect(() => {
     // Fetch the data from the back-end
-    axios.get('http://localhost:8080/user/profile')
+    axiosInstance.get('http://localhost:8080/user/profile')
       .then(res => {
         setAccount(res.data);
       })

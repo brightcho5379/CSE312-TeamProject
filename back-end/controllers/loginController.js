@@ -77,14 +77,15 @@ const crypto = require("crypto");
         viewAccount: async(req, res) => {
             try {
                 const cookie_dict = req.cookies;
+                console.log(cookie_dict)
                 const current_cookie = cookie_dict.auth
-                const user = await User.findOne({"cookie":current_cookie})
-                if(!user || user == ""){
-                    res.redirect("/Login")
-                }
-                else{
-                    return res.json(user)
-                }
+
+                const user = await Users.findOne({"cookie":current_cookie})
+                const current_username = user['username']
+                const current_email = user['email']
+                const current_university = user['university']
+                return res.json(user)
+                
             } catch (err) {
                 return res.status(500).json({msg: err.message})
             }

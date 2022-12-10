@@ -17,6 +17,7 @@ const productController = {
                 // console.log(req)
                 const {item, price, description} = req.body;
                 const cookie_dict = req.cookies;
+                console.log(cookie_dict)
                 const final = req.file.path
                 console.log(final)
                 const end = final.split('/')
