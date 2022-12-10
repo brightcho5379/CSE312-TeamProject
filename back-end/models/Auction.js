@@ -4,16 +4,13 @@ import mongoose from 'mongoose'
 const AuctionSchema = new mongoose.Schema({
     itemName: {
     type: String,
-    trim: true,
     required: 'Item name is required'
   },
     description: {
     type: String,
-    trim: true
   },
     image: {
-    data: Buffer,
-    contentType: String
+    data: String,
   },
     bidStart: {
     type: Date,
@@ -21,7 +18,7 @@ const AuctionSchema = new mongoose.Schema({
   },
     bidEnd: {
     type: Date,
-    required: "Auction end time is required"
+    required: true
   },
     seller: {
     type: mongoose.Schema.ObjectId, 

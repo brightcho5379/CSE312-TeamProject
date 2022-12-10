@@ -61,12 +61,17 @@ const productController = {
                 const cookie_dict = req.cookies;
                 const current_cookie = cookie_dict.auth
                 const user = await User.findOne({cookie:current_cookie})
+                const array = []
+                for (let i = 0; i < user.cart.length; i ++){
+                    const x = await Product.findOne({_id:user.cart[i]})
+                    array.push(x)
+                }
                 if(!user|| user == ""){
                     res.redirect("localhost:3000/Login")
                 }
                 else{
-                    const user_cart = await user["cart"]
-                    return res.json(user_cart)
+                    console.log(array)
+                    return res.json(array)
                 }
             } catch (err) {
                 return res.status(500).json({msg: err.message})
@@ -78,17 +83,13 @@ const productController = {
                 const cookie_dict = req.cookies;
                 const current_cookie = cookie_dict.auth
                 const user = await User.findOne({cookie:current_cookie})
-                const user_cart = user["cart"]
-                user_cart.append(product)
-                const filter = { username : user.username };
-                const update = { cart : user_cart };
-                const updatedUser = await Users.findOneAndUpdate(filter, update);
-                await updatedUser.save();
+                user.cart.push(product.product)
+                await user.save();
                 if(!user || user == ""){
                     res.redirect("localhost:3000/Login")
                 }
                 else{
-                    return res.json(user_cart)
+                    return res.json(user.cart)
                 }
             } catch (err) {
                 return res.status(500).json({msg: err.message})
