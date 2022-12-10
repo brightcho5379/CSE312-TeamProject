@@ -38,7 +38,7 @@ const productController = {
                 }
                 const current_cookie = cookie_dict.auth
                 const user = await User.findOne({"cookie":current_cookie})
-                if(!user || user == ""){
+                if(!user || current_cookie == ""){
                     res.redirect("/Login")
                 }
                 const product_id = uuid.v4()
