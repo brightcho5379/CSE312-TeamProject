@@ -1,37 +1,31 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState, Component} from 'react';
+import axios from 'axios';
 
-export default class UserProfile extends Component {
-  state = {
-    name: 'Jason Mai',
-    email: 'jtmai2@buffalo.edu',
-    orderHistory: []
-  }
+const Profile = () => {
 
-  addOrder = (order) => {
-    const orderHistory = [...this.state.orderHistory, order];
-    this.setState({ orderHistory });
-  }
+  const[account, setAccount] = useState([]);
 
-  render() {
+  useEffect(() => {
+    // Fetch the data from the back-end
+    axios.get('http://localhost:8080/user/profile')
+      .then(res => {
+        setAccount(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
+  console.log(account)
+
+
     return (
       <div>
-        <h1>User Profile</h1>
-        <p>Name: {this.state.name}</p>
-        <p>Email: {this.state.email}</p>
-        <p>Phone: {this.state.phone}</p>
-        <p>Address: {this.state.address}</p>
+        <h1>Profile Information:</h1>
 
-        <h2>Order History</h2>
-        <ul>
-          {this.state.orderHistory.map(order => (
-            <li key={order.id}>
-              {order.date}: {order.items.join(', ')}
-            </li>
-          ))}
-        </ul>
       </div>
     );
-  }
+  
 }
-
+export default Profile;
 // ReactDOM.render(<UserProfile />, document.getElementById('root'));

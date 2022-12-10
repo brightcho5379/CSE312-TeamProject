@@ -17,10 +17,6 @@ const Home = () => {
   /* Fetching items from items back-end*/
   const[products, setProducts] = useState([]);
 
-  const [cart_item, setCart_item] = useState({
-    cart_item:''
-  })
-
   const submitHandler = async (e, product) => {
     e.preventDefault();
     try {
