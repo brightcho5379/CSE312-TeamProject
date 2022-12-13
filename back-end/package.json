@@ -1,4 +1,5 @@
 {
+  "homepage": "http:/brightcho5379.github.io/CSE312-TeamProject",
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
@@ -11,7 +12,9 @@
     "server-install": "npm install",
     "install-all": "concurrently \"npm run client-install\" \"npm run server-install\" ",
     "dev": "concurrently  \"npm run client\" \"npm run server\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -31,5 +34,8 @@
     "socket.io": "^4.5.4",
     "uuid": "^9.0.0",
     "ws": "^8.11.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
