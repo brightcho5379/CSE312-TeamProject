@@ -1,5 +1,11 @@
 # CSE312-TeamProject
 
+# To run the app: 
+- open the repo
+- cd back-end
+- npm run dev (will run both front-end and back-end concurrently
+
+
 Open-Source Report
 Proof of knowing your stuff in CSE312
 Guidelines
