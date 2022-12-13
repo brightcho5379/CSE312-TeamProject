@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/CSE312-TeamProject/static/css/main.cca31442.css",
+    "main.js": "/CSE312-TeamProject/static/js/main.fa563d38.js",
+    "static/media/computers.jpg": "/CSE312-TeamProject/static/media/computers.7a433f546cf8f74e61d3.jpg",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/CSE312-TeamProject/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/CSE312-TeamProject/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/CSE312-TeamProject/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/tshirts.jpg": "/CSE312-TeamProject/static/media/tshirts.f25bcf13a389b9b0fa03.jpg",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/CSE312-TeamProject/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/CSE312-TeamProject/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/bags.jpg": "/CSE312-TeamProject/static/media/bags.2eb47cb173fd95e28ce9.jpg",
+    "static/media/slick.svg": "/CSE312-TeamProject/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/CSE312-TeamProject/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/CSE312-TeamProject/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/CSE312-TeamProject/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/CSE312-TeamProject/index.html",
+    "main.cca31442.css.map": "/CSE312-TeamProject/static/css/main.cca31442.css.map",
+    "main.fa563d38.js.map": "/CSE312-TeamProject/static/js/main.fa563d38.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cca31442.css",
+    "static/js/main.fa563d38.js"
+  ]
+}
