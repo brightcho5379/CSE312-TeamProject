@@ -17,7 +17,6 @@ const crypto = require("crypto");
                 const cookie_value = crypto.randomBytes(20).toString('hex');
                 const expirationDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
                 res.cookie('auth', cookie_value, {httpOnly: false, expires: expirationDate});
-                console.log("trying now")
                 
                 const newUser = new Users({
                     username, email, password: passwordHash, university, cookie:cookie_value

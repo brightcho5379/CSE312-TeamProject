@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express();
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const websocket = require("./controllers/auctionController");
-
+const path = require('path');
 
 app.use(express.json())
 app.use(bodyParser.json())
@@ -33,6 +33,13 @@ const URI = process.env.DATABASE_URI
 mongoose.connect(URI, () =>
     console.log('Connected to MongoDB')
 )
+
+if(process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, 'front-end', 'build')));
+    app.use("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'));
+    });
+}
 
 const server = PORT = process.env.PORT || 8080
 app.listen(PORT, () =>{

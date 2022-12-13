@@ -70,7 +70,7 @@ const productController = {
                     res.redirect("localhost:3000/Login")
                 }
                 else{
-                    console.log(array)
+                   // console.log(array)
                     return res.json(array)
                 }
             } catch (err) {

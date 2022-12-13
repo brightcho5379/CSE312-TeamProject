@@ -31,8 +31,5 @@
     "socket.io": "^4.5.4",
     "uuid": "^9.0.0",
     "ws": "^8.11.0"
-  },
-  "devDependencies": {
-    "gh-pages": "^4.0.0"
   }
 }
