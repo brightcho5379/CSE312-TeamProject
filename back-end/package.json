@@ -6,14 +6,12 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd front-end && npm run deploy",
+    "client": "cd front-end && npm run start",
     "client-install": "cd client && npm install",
     "server-install": "npm install",
     "install-all": "concurrently \"npm run client-install\" \"npm run server-install\" ",
     "dev": "concurrently  \"npm run client\" \"npm run server\"",
-    "heroku-postbuild": "cd client && npm install && npm run build",
-    "predeploy": "npm run dev",
-    "deploy": "gh-pages -d dev"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
